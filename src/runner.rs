@@ -5,6 +5,7 @@ use crate::memory::MemoryRef;
 use crate::memory_units::Pages;
 use crate::module::ModuleRef;
 use crate::nan_preserving_float::{F32, F64};
+use crate::scoped_instrumenter::ScopedInstrumenter;
 use crate::value::{
     ArithmeticOps, ExtendInto, Float, Integer, LittleEndianConvert, RuntimeValue, TransmuteInto,
     TryTruncateInto, WrapInto,
@@ -348,6 +349,7 @@ impl Interpreter {
                  since validation ensures that we either have an explicit \
                  return or an implicit block `end`.",
             );
+            let _s = ScopedInstrumenter::new(&instruction);
 
             match self.run_instruction(function_context, &instruction)? {
                 InstructionOutcome::RunNextInstruction => {}
