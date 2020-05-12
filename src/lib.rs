@@ -388,6 +388,7 @@ mod module;
 pub mod nan_preserving_float;
 mod prepare;
 mod runner;
+mod scoped_instrumenter;
 mod table;
 mod types;
 mod value;
